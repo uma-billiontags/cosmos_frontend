@@ -5,10 +5,10 @@ import {
   AudioMutedOutlined,
   AudioOutlined,
   VideoCameraOutlined,
-  CloseCircleOutlined,
   DesktopOutlined,
   CrownOutlined,
 } from '@ant-design/icons';
+import CameraOffOutlined from './CameraOffIcon';
 import type { UserRole } from '../types';
 
 const { Text } = Typography;
@@ -83,7 +83,7 @@ export const ParticipantDrawer: React.FC<ParticipantDrawerProps> = ({
                 )}
                 <Tooltip title={item.isCameraOff ? 'Camera off' : 'Camera on'}>
                   {item.isCameraOff ? (
-                    <CloseCircleOutlined style={{ color: '#ff4d4f' }} />
+                    <CameraOffOutlined style={{ color: '#ff4d4f' }} />
                   ) : (
                     <VideoCameraOutlined style={{ color: '#52c41a' }} />
                   )}

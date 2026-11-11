@@ -40,6 +40,16 @@ export const roomsApi = {
   deleteRoom: async (roomId: string): Promise<void> => {
     await apiClient.delete(`/rooms/${roomId}/`);
   },
+
+  // End a room session for all participants (PRD Step 3)
+  endRoom: async (roomId: string): Promise<void> => {
+    await apiClient.post(`/rooms/${roomId}/end/`);
+  },
+
+  // Moderate participant (mute or remove)
+  moderateParticipant: async (roomId: string, identity: string, action: 'mute' | 'remove'): Promise<void> => {
+    await apiClient.post(`/rooms/${roomId}/participants/${identity}/${action}/`);
+  },
 };
 
 export default roomsApi;

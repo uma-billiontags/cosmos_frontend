@@ -45,7 +45,8 @@ import { useAuth } from '../context/AuthContext';
 import { presenceApi } from '../api/presence';
 import { spacesApi } from '../api/spaces';
 import DirectChatDrawer from '../components/DirectChatDrawer';
-import type { PresenceUpdate, User, SpaceMember } from '../types';
+import CameraOffOutlined from '../components/CameraOffIcon';
+import type { PresenceUpdate, User } from '../types';
 
 // Exact floor plan zones matching user's Screenshots 3 & 5
 const OFFICE_ZONES = [
@@ -1463,20 +1464,21 @@ export const OfficeSpace: React.FC = () => {
             </span>
           </div>
 
-          {/* Camera with dropdown caret */}
-          <div
-            onClick={() => setIsCameraOff(!isCameraOff)}
-            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer' }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-              {isCameraOff ? (
-                <CloseCircleOutlined style={{ fontSize: 18, color: '#f43f5e' }} />
-              ) : (
-                <VideoCameraOutlined style={{ fontSize: 18, color: '#10b981' }} />
-              )}
-              <DownOutlined style={{ fontSize: 8, color: '#94a3b8' }} />
-            </div>
-            <span style={{ fontSize: 11, color: '#f8fafc', fontWeight: 500, marginTop: 3 }}>Camera</span>
+          {/* Camera */}
+          <div style={{ textAlign: 'center' }}>
+            <Button
+              shape="circle"
+              size="large"
+              type={isCameraOff ? 'default' : 'primary'}
+              danger={isCameraOff}
+              icon={isCameraOff ? <CameraOffOutlined /> : <VideoCameraOutlined />}
+              onClick={() => {
+                setIsCameraOff(!isCameraOff);
+                message.info(isCameraOff ? 'Camera turned on' : 'Camera turned off');
+              }}
+              style={{ width: 44, height: 44 }}
+            />
+            <div style={{ fontSize: 10, color: '#94a3b8', marginTop: 2 }}>Camera</div>
           </div>
 
           {/* Share */}
